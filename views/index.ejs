@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Talk About It</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+
+        <h1 class="text-center text-primary">Are you feeling ok?</h1>
+        <h2 class="text-center text-success">What's on your mind?</h2>
+
+        <h3 class="text-info">Let it out!</h3>
+
+        <ul class="feelings">
+          <% for(var i=0; i<feelings.length; i++) {%>
+            <li class="feeling">
+              <span>
+                <label for="feelingsDropDown">Emotion</label>
+                <select class="form-control" id="feelingsDropDown" name="emotionId">
+                  <option value="" disabled selected>Select an option</option>
+                  <% for(let i=0; i<feelings.length; i++) {%>
+                    <option value="<%= feelings[i].emotion %>"><%= feelings[i].emotion %></option>
+                  <% } %>
+                </select>
+              </span>
+              <span class="text-danger"><%= feelings[i].vent %></span>
+              <span class="text-warning"><%= feelings[i].resonate %></span>
+              <span><button></button><i class="fa fa-arrow-up text-muted" aria-hidden="true"></i></span>
+            </li>
+          <% } %>
+        </ul>
+
+        <h2 class="text-center text-primary">Add a message</h2>
+
+        <form action="/feelings" method="POST">
+          <div class="form-group">
+            <input type="text" placeholder="emotion" name="emotion" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="vent" name="vent" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-danger btn-block">Submit</button>
+        </form>
+
+        <hr>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
